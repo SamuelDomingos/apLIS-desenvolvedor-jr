@@ -67,7 +67,7 @@ O segundo backend deverá ser desenvolvido em NodeJS (JavaScript) e contemplar a
             "id": 2,
             "nome": "Francisco Pereira",
             "carteirinha": "876543",
-            "carteirinha": "12345678901"
+            "cpf": "12345678901"
         }
     ]
 ```
