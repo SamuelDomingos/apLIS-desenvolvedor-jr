@@ -112,7 +112,6 @@ export default function TableMedicos({
             <AlertDialogTitle>{t('common.cancel')}</AlertDialogTitle>
             <AlertDialogDescription>
               {t('common.no_results')} {t('common.cancel')} {t('common.cancel')}
-              {/* Aqui você pode adicionar chaves específicas para "Você tem certeza?" no i18n.js */}
               Esta ação não pode ser desfeita. Isso excluirá permanentemente o
               médico <strong>{selectedMedico?.nome}</strong>.
             </AlertDialogDescription>
