@@ -1,7 +1,10 @@
 <?php
 declare(strict_types=1);
 
-header('Access-Control-Allow-Origin: *');
+session_start();
+
+$frontendUrl = 'http://localhost:3000';
+header("Access-Control-Allow-Origin: $frontendUrl");
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 header('Content-Type: application/json; charset=utf-8');
@@ -11,8 +14,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
+$currentTime = time();
+$window = 15 * 60;
+$maxRequests = 100;
+
+if (!isset($_SESSION['last_request_time'])) {
+    $_SESSION['last_request_time'] = $currentTime;
+    $_SESSION['request_count'] = 1;
+} else {
+    if ($currentTime - $_SESSION['last_request_time'] < $window) {
+        $_SESSION['request_count']++;
+        if ($_SESSION['request_count'] > $maxRequests) {
+            http_response_code(429);
+            echo json_encode(['error_code' => 'ERR_TOO_MANY_REQUESTS', 'message' => 'Muitas requisições, tente novamente mais tarde.']);
+            exit;
+        }
+    } else {
+        $_SESSION['last_request_time'] = $currentTime;
+        $_SESSION['request_count'] = 1;
+    }
+}
+
 require_once __DIR__ . '/../src/Database.php';
 require_once __DIR__ . '/../src/MedicoController.php';
+
 
 $method = $_SERVER['REQUEST_METHOD'];
 $uri    = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

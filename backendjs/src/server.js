@@ -1,12 +1,30 @@
 const express = require("express");
 const cors = require("cors");
+const rateLimit = require("express-rate-limit");
 require("dotenv").config();
 const pacientes = require("./modules/pacientes/pacientes.routes");
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 
-app.use(cors());
+const corsOptions = {
+  origin: process.env.FRONTEND_URL,
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: {
+    error_code: "ERR_TOO_MANY_REQUESTS",
+    message: "Muitas requisições, tente novamente mais tarde.",
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+app.use(limiter);
+
 app.use(express.json());
 
 app.use("/api/v1/pacientes", pacientes);
