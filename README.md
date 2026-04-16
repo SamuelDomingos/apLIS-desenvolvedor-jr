@@ -40,7 +40,7 @@ O primeiro backend deverá ser desenvolvido em PHP e contemplar as seguintes rot
     ]
 ```
 
-- `POST /api/v1/medicos`: cria um novo médico enviado o o body do exemplo abaixo e retornando a mensagem "Médico criado com sucesso".
+- `POST /api/v1/medicos`: cria um novo médico enviando o body do exemplo abaixo e retornando a mensagem "Médico criado com sucesso".
 
 ```json
     {
@@ -67,12 +67,12 @@ O segundo backend deverá ser desenvolvido em NodeJS (JavaScript) e contemplar a
             "id": 2,
             "nome": "Francisco Pereira",
             "carteirinha": "876543",
-            "carteirinha": "12345678901"
+            "cpf": "12345678901"
         }
     ]
 ```
 
-- `POST /api/v1/medicos`: cria um novo médico enviado o o body do exemplo abaixo e retornando a mensagem "Médico criado com sucesso".
+- `POST /api/v1/pacientes`: cria um novo paciente enviando o body do exemplo abaixo e retornando a mensagem "Paciente criado com sucesso".
 
 ```json
     {
@@ -93,5 +93,5 @@ A avaliação considerará principalmente o funcionamento ponta a ponta da aplic
 
 # Desafio extra 
 
-Crie as demais operações CRUD
-Deixe o projeto pronto para multi linguagem.
+- Crie as demais operações CRUD
+- Deixe o projeto pronto para multi linguagem, tanto no backend quanto no frontend.
