@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 session_start();
 
-$frontendUrl = 'http://localhost:3000';
+$frontendUrl = 'http://localhost:5173';
 header("Access-Control-Allow-Origin: $frontendUrl");
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');

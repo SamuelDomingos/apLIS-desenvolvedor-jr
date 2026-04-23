@@ -1,4 +1,5 @@
 backendjs/node_modules
-backendjs/.env                                                                                                                                                                                                                                                                                                                                                                                              
+backendjs/.env
+backendphp/vendor                                                                                                                                                                                                                                                                                                                                                                                           
 backendphp/.env                                                                                                                                                                                         
 app/.env

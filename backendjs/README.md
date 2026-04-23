@@ -54,7 +54,7 @@ Antes de começar, você precisará ter instalado em sua máquina:
    DB_NAME=nome_do_seu_banco
    DB_USER=seu_usuario
    DB_PASS=sua_senha
-   FRONTEND_URL=http://localhost:3000
+   FRONTEND_URL=http://localhost:5173
    ```
 
 4. **Instalar Dependências**

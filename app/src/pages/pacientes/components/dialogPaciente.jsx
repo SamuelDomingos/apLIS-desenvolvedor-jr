@@ -74,7 +74,15 @@ export default function DialogPaciente({
                   <FormItem>
                     <FormLabel>{t('patients.placeholder_name')}</FormLabel>
                     <FormControl>
-                      <Input placeholder={t('patients.placeholder_name')} {...field} />
+                      <Input
+                        placeholder={t('patients.placeholder_name')}
+                        {...field}
+                        onChange={(e) =>
+                          field.onChange(
+                            e.target.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '')
+                          )
+                        }
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -102,7 +110,15 @@ export default function DialogPaciente({
                     <FormItem>
                       <FormLabel>Carteirinha</FormLabel>
                       <FormControl>
-                        <Input placeholder="123456" {...field} />
+                        <Input
+                          placeholder="123456"
+                          {...field}
+                          onChange={(e) =>
+                            field.onChange(
+                              e.target.value.replace(/\D/g, '')
+                            )
+                          }
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

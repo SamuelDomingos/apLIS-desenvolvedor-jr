@@ -81,7 +81,15 @@ export default function DialogMedico({
                   <FormItem>
                     <FormLabel>{t('patients.placeholder_name')}</FormLabel>
                     <FormControl>
-                      <Input placeholder={t('patients.placeholder_name')} {...field} />
+                      <Input
+                        placeholder={t('patients.placeholder_name')}
+                        {...field}
+                        onChange={(e) =>
+                          field.onChange(
+                            e.target.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '')
+                          )
+                        }
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -95,54 +103,62 @@ export default function DialogMedico({
                     <FormItem>
                       <FormLabel>CRM</FormLabel>
                       <FormControl>
-                        <Input placeholder="123456" {...field} />
+                        <Input
+                          placeholder="123456"
+                          {...field}
+                          onChange={(e) =>
+                            field.onChange(
+                              e.target.value.replace(/\D/g, '')
+                            )
+                          }
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <FormField
-                  control={form.control}
-                  name="UFCRM"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>UF CRM</FormLabel>
-                      <FormControl>
-                        <Combobox
-                          items={BRAZIL_STATES}
-                          value={field.value}
-                          onValueChange={field.onChange}
-                        >
-                          <ComboboxInput placeholder={t('common.search')} />
-                          <ComboboxContent>
-                            <ComboboxEmpty>
-                              {t('common.no_results')}
-                            </ComboboxEmpty>
-                            <ComboboxList>
-                              {(state) => (
-                                <ComboboxItem
-                                  key={state.value}
-                                  value={state.value}
-                                >
-                                  {state.label} ({state.value})
-                                </ComboboxItem>
-                              )}
-                            </ComboboxList>
-                          </ComboboxContent>
-                        </Combobox>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <Button type="submit" className="w-full" disabled={isSubmitting}>
-                {isSubmitting ? t('common.loading') : t('common.save')}
-              </Button>
-            </form>
-          </Form>
-        </DialogContent>
-      </Dialog>
+              <FormField
+                control={form.control}
+                name="UFCRM"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>UF CRM</FormLabel>
+                    <FormControl>
+                      <Combobox
+                        items={BRAZIL_STATES}
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <ComboboxInput placeholder={t('common.search')} />
+                        <ComboboxContent>
+                          <ComboboxEmpty>
+                            {t('common.no_results')}
+                          </ComboboxEmpty>
+                          <ComboboxList>
+                            {(state) => (
+                              <ComboboxItem
+                                key={state.value}
+                                value={state.value}
+                              >
+                                {state.label} ({state.value})
+                              </ComboboxItem>
+                            )}
+                          </ComboboxList>
+                        </ComboboxContent>
+                      </Combobox>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? t('common.loading') : t('common.save')}
+            </Button>
+          </form>
+        </Form>
+      </DialogContent>
+    </Dialog >
     </>
   );
 }
